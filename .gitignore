@@ -35,6 +35,11 @@ e2e/*.map
 # System Files
 .DS_Store/
 
+### Sass ###
+*.css.map
+*.sass.map
+*.scss.map
+
 ### DotnetCore ###
 # .NET Core build folders
 bin/
