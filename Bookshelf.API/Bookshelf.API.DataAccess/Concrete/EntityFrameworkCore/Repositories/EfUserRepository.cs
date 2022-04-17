@@ -3,7 +3,7 @@ using Bookshelf.API.Entities.Concrete;
 
 namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfUserRespository : EfGenericRepository<User>, IUserDal
+    public class EfUserRepository : EfGenericRepository<User>, IUserDal
     {
      
     }
