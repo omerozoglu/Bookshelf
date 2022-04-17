@@ -2,12 +2,8 @@
 
 namespace Bookshelf.API.DataAccess.Interfaces
 {
-    public interface IUserDal
+    public interface IUserDal: IGenericDal<User>
     {
-        void Create(User obj);
-        void Update(User obj);
-        void Delete(User obj);
-        User GetById(int id); 
-        List<User> GetAll();
+
     }
 }

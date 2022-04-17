@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bookshelf.API.DataAccess.Interfaces
 {
-    public interface IBookDal
+    public interface IBookDal: IGenericDal<Book>
     {
-        void Create(Book obj);
-        void Update(Book obj);
-        void Delete(Book obj);
-        Book GetById(int id);
-        List<Book> GetAll();
 
     }
 }
