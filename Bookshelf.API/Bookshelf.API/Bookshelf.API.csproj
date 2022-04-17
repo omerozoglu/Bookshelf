@@ -16,4 +16,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bookshelf.API.Business\Bookshelf.API.Business.csproj" />
+  </ItemGroup>
+
 </Project>

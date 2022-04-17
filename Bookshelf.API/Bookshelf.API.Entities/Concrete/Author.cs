@@ -4,5 +4,9 @@ namespace Bookshelf.API.Entities.Concrete
 {
     public class Author:ITable
     {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public bool IsDeleted { get; set; }
+        public List<Book> Books { get; set; }
     }
 }
