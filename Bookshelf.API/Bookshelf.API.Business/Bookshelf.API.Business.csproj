@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Bookshelf.API.DataAccess\Bookshelf.API.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+  </ItemGroup>
+
 </Project>
