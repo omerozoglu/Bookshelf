@@ -7,6 +7,6 @@ namespace Bookshelf.API.Entities.Concrete
         public int Id { get; set; }
         public string? Name { get; set; }
         public bool IsDeleted { get; set; }
-        public List<Book> Books { get; set; }
+        public List<Book>? Books { get; set; }
     }
 }

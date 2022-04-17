@@ -23,8 +23,4 @@
     <ProjectReference Include="..\Bookshelf.API.Entities\Bookshelf.API.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Concrete\EntityFrameworkCore\Context\" />
-  </ItemGroup>
-
 </Project>

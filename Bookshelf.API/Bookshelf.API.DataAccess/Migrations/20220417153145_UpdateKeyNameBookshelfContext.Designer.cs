@@ -3,6 +3,7 @@ using Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookshelf.API.DataAccess.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class BookshelfContextModelSnapshot : ModelSnapshot
+    [Migration("20220417153145_UpdateKeyNameBookshelfContext")]
+    partial class UpdateKeyNameBookshelfContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

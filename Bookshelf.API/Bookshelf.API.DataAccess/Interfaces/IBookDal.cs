@@ -12,7 +12,7 @@ namespace Bookshelf.API.DataAccess.Interfaces
         void Create(Book obj);
         void Update(Book obj);
         void Delete(Book obj);
-        Book GetById(int i);
+        Book GetById(int id);
         List<Book> GetAll();
 
     }

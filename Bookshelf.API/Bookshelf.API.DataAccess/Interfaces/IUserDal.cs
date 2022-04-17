@@ -7,7 +7,7 @@ namespace Bookshelf.API.DataAccess.Interfaces
         void Create(User obj);
         void Update(User obj);
         void Delete(User obj);
-        User GetById(int i); 
+        User GetById(int id); 
         List<User> GetAll();
     }
 }

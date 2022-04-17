@@ -3,6 +3,7 @@ using Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookshelf.API.DataAccess.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class BookshelfContextModelSnapshot : ModelSnapshot
+    [Migration("20220417152849_UpdateContextBookshelfContext")]
+    partial class UpdateContextBookshelfContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,6 +59,15 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<int>("Edition")
                         .HasColumnType("int");
 
+                    b.Property<int>("FK_Books_Author_AuthorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FK_Books_Genre_GenreID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FK_Books_Publisher_PublisherID")
+                        .HasColumnType("int");
+
                     b.Property<int>("GenreID")
                         .HasColumnType("int");
 
@@ -78,11 +89,11 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorID");
+                    b.HasIndex("FK_Books_Author_AuthorID");
 
-                    b.HasIndex("GenreID");
+                    b.HasIndex("FK_Books_Genre_GenreID");
 
-                    b.HasIndex("PublisherID");
+                    b.HasIndex("FK_Books_Publisher_PublisherID");
 
                     b.ToTable("Books");
                 });
@@ -172,19 +183,19 @@ namespace Bookshelf.API.DataAccess.Migrations
                 {
                     b.HasOne("Bookshelf.API.Entities.Concrete.Author", "Author")
                         .WithMany("Books")
-                        .HasForeignKey("AuthorID")
+                        .HasForeignKey("FK_Books_Author_AuthorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bookshelf.API.Entities.Concrete.Genre", "Genre")
                         .WithMany("Books")
-                        .HasForeignKey("GenreID")
+                        .HasForeignKey("FK_Books_Genre_GenreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bookshelf.API.Entities.Concrete.Publisher", "Publisher")
                         .WithMany("Books")
-                        .HasForeignKey("PublisherID")
+                        .HasForeignKey("FK_Books_Publisher_PublisherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -14,9 +14,9 @@ namespace Bookshelf.API.Entities.Concrete
         public string? ISBN { get; set; }
         public bool IsDeleted { get; set; }
         public int GenreID { get; set; }
-        public Genre Genre { get; set; }
-        public Author Author { get; set; }
-        public Publisher Publisher { get; set; }
+        public Genre? Genre { get; set; }
+        public Author? Author { get; set; }
+        public Publisher? Publisher { get; set; }
 
     }
 }
