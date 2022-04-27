@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bookshelf.API.DataAccess.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(BookshelfContext))]
     [Migration("20220417140204_InitialBookshelfContext")]
     partial class InitialBookshelfContext
     {

@@ -13,11 +13,18 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new AuthorMap());
             modelBuilder.ApplyConfiguration(new BookMap());
+            modelBuilder.ApplyConfiguration(new BookUserMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
 
-        public DbSet<User>? Users { get; set; }
+        public DbSet<Author>? Authors { get; set; }
         public DbSet<Book>? Books { get; set; }
+        public DbSet<BookUser>? BookUsers { get; set; }
+        public DbSet<Borrow>? Borrows { get; set; }
+        public DbSet<Genre>? Genres { get; set; }
+        public DbSet<Publisher>? Publishers { get; set; }
+        public DbSet<User>? Users { get; set; }
     }
 }

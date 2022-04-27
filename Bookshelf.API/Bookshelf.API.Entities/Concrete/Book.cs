@@ -17,6 +17,7 @@ namespace Bookshelf.API.Entities.Concrete
         public Genre? Genre { get; set; }
         public Author? Author { get; set; }
         public Publisher? Publisher { get; set; }
+        public List<BookUser> BookUsers { get; set; }  
 
     }
 }

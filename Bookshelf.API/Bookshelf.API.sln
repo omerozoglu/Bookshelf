@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.API.DataAccess", "Bookshelf.API.DataAccess\Bookshelf.API.DataAccess.csproj", "{F9186E1A-B585-4116-A6FF-C96BC7139D12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.API.DataAccess", "Bookshelf.API.DataAccess\Bookshelf.API.DataAccess.csproj", "{F9186E1A-B585-4116-A6FF-C96BC7139D12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.API.Business", "Bookshelf.API.Business\Bookshelf.API.Business.csproj", "{AFB846CC-B257-4C18-A957-F4452B0BF914}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.API.Business", "Bookshelf.API.Business\Bookshelf.API.Business.csproj", "{AFB846CC-B257-4C18-A957-F4452B0BF914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.API.Entities", "Bookshelf.API.Entities\Bookshelf.API.Entities.csproj", "{989D91E6-62B7-4FA4-8273-C775D69FC8D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.API.Entities", "Bookshelf.API.Entities\Bookshelf.API.Entities.csproj", "{989D91E6-62B7-4FA4-8273-C775D69FC8D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.API", "Bookshelf.API\Bookshelf.API.csproj", "{5010323A-4857-4660-A85D-ECCE8B048F67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.API", "Bookshelf.API\Bookshelf.API.csproj", "{5010323A-4857-4660-A85D-ECCE8B048F67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

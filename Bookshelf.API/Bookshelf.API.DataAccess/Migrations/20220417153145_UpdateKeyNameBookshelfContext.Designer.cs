@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bookshelf.API.DataAccess.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(BookshelfContext))]
     [Migration("20220417153145_UpdateKeyNameBookshelfContext")]
     partial class UpdateKeyNameBookshelfContext
     {

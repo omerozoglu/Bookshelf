@@ -15,5 +15,6 @@ namespace Bookshelf.API.Entities.Concrete
         public bool Gender { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public List<BookUser> BookUsers{ get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Bookshelf.API.Entities.Concrete
         public bool IsDeleted { get; set; }
 
         public Book? Book { get; set; }
-        public User? User{ get; set; }
+        public User? User { get; set; }
 
     }
 }
