@@ -1,13 +1,13 @@
-﻿using Bookshelf.API.Entities.Interfaces;
+﻿using Bookshelf.API.Domain.Interfaces;
 
 namespace Bookshelf.API.Business.Interfaces
 {
-    public interface IGenericService<T> where T: class, ITable,new()
+    public interface IGenericService<TEntity> where TEntity : class , IEntity , new()
     {
-        void Create(T obj);
-        void Update(T obj);
-        void Delete(T obj);
-        T GetById(int id);
-        List<T> GetAll();
+        Task<List<TEntity>> GetAllAsync();
+        Task<TEntity> FindById(int id);
+        Task<TEntity> AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task RemoveAsync(TEntity entity);
     }
 }

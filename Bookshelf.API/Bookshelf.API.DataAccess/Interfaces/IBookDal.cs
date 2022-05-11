@@ -2,8 +2,8 @@
 
 namespace Bookshelf.API.DataAccess.Interfaces
 {
-    public interface IBookDal: IGenericDal<Book>
+    public interface IBookDal : IGenericDal<Book>
     {
-
+        Task<List<Book>> GetAllBooksAsync();
     }
 }

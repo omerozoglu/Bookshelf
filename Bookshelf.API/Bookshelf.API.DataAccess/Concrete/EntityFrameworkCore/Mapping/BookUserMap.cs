@@ -10,8 +10,11 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Mapping
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
-            builder.HasOne(I => I.Book).WithMany(I => I.BookUsers).HasForeignKey("BookUserID");
-           // builder.HasOne(I => I.User).WithMany(I => I.BookUsers).HasForeignKey("UserBookID");
+
+            builder.Property(I => I.IsFav).HasDefaultValue(false);
+            builder.Property(I => I.CreationDate).HasDefaultValue(DateTime.UtcNow);
+            builder.Property(I => I.UpdateDate).HasDefaultValue(DateTime.UtcNow);
+            builder.Property(I => I.IsDeleted).HasDefaultValue(false);
         }
     }
 }

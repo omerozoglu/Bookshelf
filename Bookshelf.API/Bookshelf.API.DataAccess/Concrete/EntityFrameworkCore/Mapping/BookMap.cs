@@ -10,11 +10,12 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Mapping
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
-            builder.Property(I => I.ISBN).HasMaxLength(13);
-            builder.HasOne(I => I.Author).WithMany(I => I.Books).HasForeignKey("AuthorID");
-            builder.HasOne(I => I.Genre).WithMany(I => I.Books).HasForeignKey("GenreID");
-            builder.HasOne(I => I.Publisher).WithMany(I => I.Books).HasForeignKey("PublisherID");
 
+            builder.Property(I => I.ISBN).HasMaxLength(13);
+
+            //builder.HasOne(I => I.Author).WithMany(I => I.Books).HasForeignKey(I => I.Id).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasOne(I => I.Genre).WithMany(I => I.Books).HasForeignKey(I => I.Id).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasOne(I => I.Publisher).WithMany(I => I.Books).HasForeignKey(I => I.Id).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

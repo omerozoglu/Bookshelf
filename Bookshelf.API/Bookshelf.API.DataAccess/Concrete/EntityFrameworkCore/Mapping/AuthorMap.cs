@@ -10,7 +10,6 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Mapping
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
-            builder.HasMany(I=>I.Books).WithOne(I=>I.Author).HasForeignKey("BookID");
         }
     }
 }

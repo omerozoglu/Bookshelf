@@ -1,13 +1,18 @@
-﻿using Bookshelf.API.Entities.Interfaces;
+﻿using Bookshelf.API.Domain.Interfaces;
+using System.Linq.Expressions;
 
 namespace Bookshelf.API.DataAccess.Interfaces
 {
-    public interface IGenericDal<T> where T: class, ITable, new()
+    public interface IGenericDal<TEntity> where TEntity : class, IEntity, new()
     {
-        void Create(T obj);
-        void Update(T obj);
-        void Delete(T obj);
-        T GetById(int id);
-        List<T> GetAll();
+        Task<List<TEntity>> GetAllAsync();
+        Task<List<TEntity>> GetAllAsync<TKey>(Expression<Func<TEntity, TKey>> keySelector);
+        Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter);
+        Task<List<TEntity>> GetAllAsync<TKey>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TKey>> keySelector);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter);
+        Task<TEntity> FindById(int id);
+        Task<TEntity> AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task RemoveAsync(TEntity entity);
     }
 }

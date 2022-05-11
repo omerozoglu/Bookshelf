@@ -2,7 +2,7 @@
 
 namespace Bookshelf.API.DataAccess.Interfaces
 {
-    public interface IGenreDal: IGenericDal<Genre>
+    public interface IGenreDal : IGenericDal<Genre>
     {
 
     }

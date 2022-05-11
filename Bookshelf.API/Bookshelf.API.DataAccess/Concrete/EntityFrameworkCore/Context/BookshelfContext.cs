@@ -15,14 +15,17 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context
         {
             modelBuilder.ApplyConfiguration(new AuthorMap());
             modelBuilder.ApplyConfiguration(new BookMap());
+            modelBuilder.ApplyConfiguration(new BookTransactionMap());
             modelBuilder.ApplyConfiguration(new BookUserMap());
+            modelBuilder.ApplyConfiguration(new GenreMap());
+            modelBuilder.ApplyConfiguration(new PublisherMap());
             modelBuilder.ApplyConfiguration(new UserMap());
         }
 
         public DbSet<Author>? Authors { get; set; }
         public DbSet<Book>? Books { get; set; }
+        public DbSet<BookTransaction>? BookTransactions { get; set; }
         public DbSet<BookUser>? BookUsers { get; set; }
-        public DbSet<Borrow>? Borrows { get; set; }
         public DbSet<Genre>? Genres { get; set; }
         public DbSet<Publisher>? Publishers { get; set; }
         public DbSet<User>? Users { get; set; }

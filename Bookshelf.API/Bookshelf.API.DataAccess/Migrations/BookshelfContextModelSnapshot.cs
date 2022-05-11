@@ -30,11 +30,23 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<int?>("CreatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -52,13 +64,16 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<int>("AuthorID")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int?>("Bookmark")
                         .HasColumnType("int");
 
-                    b.Property<int>("Bookmark")
+                    b.Property<int?>("CreatedUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Edition")
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Edition")
                         .HasColumnType("int");
 
                     b.Property<int>("GenreID")
@@ -68,17 +83,23 @@ namespace Bookshelf.API.DataAccess.Migrations
                         .HasMaxLength(13)
                         .HasColumnType("nvarchar(13)");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<short>("PageCount")
-                        .HasColumnType("smallint");
+                    b.Property<int?>("PageCount")
+                        .HasColumnType("int");
 
                     b.Property<int>("PublisherID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -89,6 +110,58 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.HasIndex("PublisherID");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.BookTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FromUserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LendDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 18, 1, 21, 850, DateTimeKind.Utc).AddTicks(6173));
+
+                    b.Property<DateTime?>("ReturnedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ToUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BookTransactions");
                 });
 
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.BookUser", b =>
@@ -102,71 +175,54 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookUserID")
+                    b.Property<int>("BookId1")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("FinishDate")
+                    b.Property<int?>("CreatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 18, 1, 21, 850, DateTimeKind.Utc).AddTicks(8130));
+
+                    b.Property<DateTime?>("FinishDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsBorrow")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsFav")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
-                    b.Property<bool>("IsLend")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("PurchaseDate")
+                    b.Property<DateTime?>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 18, 1, 21, 850, DateTimeKind.Utc).AddTicks(8291));
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookUserID");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("BookId1");
 
                     b.ToTable("BookUsers");
-                });
-
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Borrow", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FromUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("GetDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ReturnedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ToUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Borrows");
                 });
 
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Genre", b =>
@@ -177,11 +233,23 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<int?>("CreatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -196,11 +264,23 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<int?>("CreatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -215,23 +295,32 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CreatedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 18, 1, 21, 850, DateTimeKind.Utc).AddTicks(9820));
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -241,6 +330,14 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 18, 1, 21, 850, DateTimeKind.Utc).AddTicks(9957));
+
+                    b.Property<int?>("UpdatedUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -253,19 +350,19 @@ namespace Bookshelf.API.DataAccess.Migrations
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Book", b =>
                 {
                     b.HasOne("Bookshelf.API.Entities.Concrete.Author", "Author")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("AuthorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bookshelf.API.Entities.Concrete.Genre", "Genre")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("GenreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bookshelf.API.Entities.Concrete.Publisher", "Publisher")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("PublisherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -277,17 +374,31 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.BookUser", b =>
+            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.BookTransaction", b =>
                 {
                     b.HasOne("Bookshelf.API.Entities.Concrete.Book", "Book")
+                        .WithMany("BookTransactions")
+                        .HasForeignKey("BookId")
+                        .IsRequired();
+
+                    b.HasOne("Bookshelf.API.Entities.Concrete.User", null)
+                        .WithMany("BookTransactions")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.BookUser", b =>
+                {
+                    b.HasOne("Bookshelf.API.Entities.Concrete.User", "User")
                         .WithMany("BookUsers")
-                        .HasForeignKey("BookUserID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Bookshelf.API.Entities.Concrete.User", "User")
+                    b.HasOne("Bookshelf.API.Entities.Concrete.Book", "Book")
                         .WithMany("BookUsers")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("BookId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -296,28 +407,17 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Author", b =>
-                {
-                    b.Navigation("Books");
-                });
-
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Book", b =>
                 {
+                    b.Navigation("BookTransactions");
+
                     b.Navigation("BookUsers");
-                });
-
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Genre", b =>
-                {
-                    b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Publisher", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.User", b =>
                 {
+                    b.Navigation("BookTransactions");
+
                     b.Navigation("BookUsers");
                 });
 #pragma warning restore 612, 618

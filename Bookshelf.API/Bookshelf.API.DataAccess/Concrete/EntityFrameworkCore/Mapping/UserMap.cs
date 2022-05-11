@@ -11,9 +11,13 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Mapping
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
-            //Kolon özellekilerini burada ayarlıyoruz.
-             //builder.HasMany(I=>I.).WithOne(I=>I.)HasForeignKey
-             //(I=>I.).OnDelete(DeleteBehavior.Casdae)
+
+            builder.Property(I => I.IsActive).HasDefaultValue(true);
+            builder.Property(I => I.CreationDate).HasDefaultValue(DateTime.UtcNow);
+            builder.Property(I => I.UpdateDate).HasDefaultValue(DateTime.UtcNow);
+            builder.Property(I => I.IsDeleted).HasDefaultValue(false);
+
+            builder.HasMany(I => I.BookUsers).WithOne(I => I.User).HasForeignKey(I => I.BookId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
