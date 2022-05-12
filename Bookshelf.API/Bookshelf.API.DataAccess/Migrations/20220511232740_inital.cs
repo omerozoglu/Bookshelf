@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bookshelf.API.DataAccess.Migrations
 {
-    public partial class initial : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -75,11 +75,10 @@ namespace Bookshelf.API.DataAccess.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(7565)),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(7725)),
                     CreatedUserId = table.Column<int>(type: "int", nullable: true),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(7722)),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(7875)),
                     UpdatedUserId = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false)
                 },
@@ -112,20 +111,23 @@ namespace Bookshelf.API.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Books_Authors_Id",
-                        column: x => x.Id,
+                        name: "FK_Books_Authors_AuthorID",
+                        column: x => x.AuthorID,
                         principalTable: "Authors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Books_Genres_Id",
-                        column: x => x.Id,
+                        name: "FK_Books_Genres_GenreID",
+                        column: x => x.GenreID,
                         principalTable: "Genres",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Books_Publishers_Id",
-                        column: x => x.Id,
+                        name: "FK_Books_Publishers_PublisherID",
+                        column: x => x.PublisherID,
                         principalTable: "Publishers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,7 +136,7 @@ namespace Bookshelf.API.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LendDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(618)),
+                    LendDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(2798)),
                     ReturnedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     FromUserId = table.Column<int>(type: "int", nullable: false),
                     ToUserId = table.Column<int>(type: "int", nullable: false),
@@ -173,10 +175,9 @@ namespace Bookshelf.API.DataAccess.Migrations
                     IsFav = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false),
-                    BookId1 = table.Column<int>(type: "int", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(2223)),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(4484)),
                     CreatedUserId = table.Column<int>(type: "int", nullable: true),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(2486)),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(4672)),
                     UpdatedUserId = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false)
                 },
@@ -184,18 +185,33 @@ namespace Bookshelf.API.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_BookUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BookUsers_Books_BookId1",
-                        column: x => x.BookId1,
+                        name: "FK_BookUsers_Books_BookId",
+                        column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookUsers_Users_BookId",
-                        column: x => x.BookId,
+                        name: "FK_BookUsers_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_AuthorID",
+                table: "Books",
+                column: "AuthorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_GenreID",
+                table: "Books",
+                column: "GenreID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_PublisherID",
+                table: "Books",
+                column: "PublisherID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookTransactions_BookId",
@@ -213,9 +229,9 @@ namespace Bookshelf.API.DataAccess.Migrations
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookUsers_BookId1",
+                name: "IX_BookUsers_UserId",
                 table: "BookUsers",
-                column: "BookId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -6,8 +6,15 @@ namespace Bookshelf.API.Business.Concrete
 {
     public class UserManager : GenericManager<User>, IUserService
     {
-        public UserManager(IGenericDal<User> genericDal) : base(genericDal)
+        private readonly IUserDal _userDal;
+        public UserManager(IGenericDal<User> genericDal, IUserDal userDal) : base(genericDal)
         {
+            _userDal = userDal;
+        }
+
+        public async Task<User> LoginAsync(User user)
+        {
+            return await _userDal.LoginAsync(user);
         }
     }
 }

@@ -8,6 +8,6 @@ namespace Bookshelf.API.DTO.DTOs.BookTransactionDtos
         public DateTime LendDate { get; set; }
         public int FromUserId { get; set; }
         public int ToUserId { get; set; }
-        public BookAddDto Book { get; set; }
+        public int BookId { get; set; }
     }
 }

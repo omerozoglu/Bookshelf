@@ -1,10 +1,9 @@
-﻿using Bookshelf.API.DTO.Interfaces;
+﻿using Bookshelf.API.DTO.DTOs.BaseDtos;
 
 namespace Bookshelf.API.DTO.DTOs.PublisherDtos
 {
-    public class PublisherUpdateDto : IDto
+    public class PublisherUpdateDto : BaseUpdateDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

@@ -4,6 +4,6 @@ namespace Bookshelf.API.DTO.DTOs.GenreDtos
 {
     public class GenreAddDto : IDto
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
     }
 }

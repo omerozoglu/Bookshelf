@@ -15,5 +15,11 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 .Include(I => I.BookTransactions)
                 .ToListAsync();
         }
+
+        public async Task<User> LoginAsync(User user)
+        {
+            using var context = new BookshelfContext();
+            return await context.Set<User>().Where(p => (p.Username == user.Username) && (p.Password == user.Password)).FirstAsync();
+        }
     }
 }

@@ -13,9 +13,7 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Mapping
 
             builder.Property(I => I.ISBN).HasMaxLength(13);
 
-            //builder.HasOne(I => I.Author).WithMany(I => I.Books).HasForeignKey(I => I.Id).OnDelete(DeleteBehavior.NoAction);
-            //builder.HasOne(I => I.Genre).WithMany(I => I.Books).HasForeignKey(I => I.Id).OnDelete(DeleteBehavior.NoAction);
-            //builder.HasOne(I => I.Publisher).WithMany(I => I.Books).HasForeignKey(I => I.Id).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(I => I.BookUsers).WithOne(I=>I.Book).HasForeignKey(I => I.BookId);
         }
     }
 }

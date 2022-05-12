@@ -7,7 +7,7 @@ namespace Bookshelf.API.DTO.DTOs.BookUserDtos
     public class BookUserAddDto : IDto
     {
         public DateTime PurchaseDate { get; set; }
-        public UserAddDto User { get; set; }
-        public BookAddDto Book { get; set; }
+        public int UserId { get; set; }
+        public int BookId { get; set; }
     }
 }

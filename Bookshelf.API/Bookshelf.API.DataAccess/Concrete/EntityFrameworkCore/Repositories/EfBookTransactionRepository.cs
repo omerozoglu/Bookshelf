@@ -15,23 +15,24 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 .ToListAsync();
         }
 
-        public async Task<List<Book>> GetBorrowedBooksByToUserIdAsync(int id)
+
+        public async Task<List<BookTransaction>> GetBorrowedBooksByToUserIdAsync(int id)
         {
             using var context = new BookshelfContext();
             return await context.BookTransactions
                 .Include(I => I.Book)
-                .Where(I => I.ToUserId == id && I.ReturnedDate.Value == null)
-                .Join(context.Books, bookTransaction => bookTransaction.BookId, book => book.Id,(bookTransaction,book)=>book)
+                .Where(I => I.ToUserId == id && I.ReturnedDate.Value == DateTime.MinValue)
+                .Join(context.Books, bookTransaction => bookTransaction.BookId, book => book.Id,(bookTransaction,book)=> bookTransaction)
                 .ToListAsync();
         }
 
-        public async Task<List<Book>> GetLentBooksByFromUserIdAsync(int id)
+        public async Task<List<BookTransaction>> GetLentBooksByFromUserIdAsync(int id)
         {
             using var context = new BookshelfContext();
-            return await context.BookTransactions
+           return await context.BookTransactions
                 .Include(I => I.Book)
-                .Where(I => I.FromUserId == id && I.ReturnedDate.Value == null)
-                .Join(context.Books, bookTransaction => bookTransaction.BookId, book => book.Id, (bookTransaction, book) => book)
+                .Where(I => I.FromUserId == id && I.ReturnedDate.Value==DateTime.MinValue)
+                .Join(context.Books, bookTransaction => bookTransaction.BookId, book => book.Id, (bookTransaction, book) => bookTransaction)
                 .ToListAsync();
         }
     }

@@ -17,7 +17,7 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.UpdateDate).HasDefaultValue(DateTime.UtcNow);
             builder.Property(I => I.IsDeleted).HasDefaultValue(false);
 
-            builder.HasMany(I => I.BookUsers).WithOne(I => I.User).HasForeignKey(I => I.BookId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(I => I.BookUsers).WithOne(I => I.User).HasForeignKey(I => I.UserId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

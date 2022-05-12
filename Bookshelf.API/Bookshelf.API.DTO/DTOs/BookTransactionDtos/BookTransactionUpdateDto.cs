@@ -1,15 +1,14 @@
-﻿using Bookshelf.API.DTO.DTOs.BookDtos;
-using Bookshelf.API.DTO.Interfaces;
+﻿using Bookshelf.API.DTO.DTOs.BaseDtos;
+using Bookshelf.API.DTO.DTOs.BookDtos;
 
 namespace Bookshelf.API.DTO.DTOs.BookTransactionDtos
 {
-    public class BookTransactionUpdateDto : IDto
+    public class BookTransactionUpdateDto : BaseUpdateDto
     {
-        public int Id { get; set; }
-        public DateTime LendDate { get; set; }
+        public DateTime? LendDate { get; set; }
         public DateTime? ReturnedDate { get; set; }
-        public int FromUserId { get; set; }
-        public int ToUserId { get; set; }
-        public BookUpdateDto Book { get; set; }
+        public int? FromUserId { get; set; }
+        public int? ToUserId { get; set; }
+        public int? BookId { get; set; }
     }
 }

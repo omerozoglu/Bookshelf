@@ -11,8 +11,8 @@ namespace Bookshelf.API.DTO.DTOs.BookDtos
         public int Edition { get; set; }
         public int PageCount { get; set; }
         public string ISBN { get; set; }
-        public GenreAddDto Genre { get; set; }
-        public AuthorAddDto Author { get; set; }
-        public PublisherAddDto Publisher { get; set; }
+        public int GenreId { get; set; }
+        public int AuthorId { get; set; }
+        public int PublisherId { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookshelf.API.DataAccess.Migrations
 {
     [DbContext(typeof(BookshelfContext))]
-    [Migration("20220511163127_initial")]
-    partial class initial
+    [Migration("20220511232740_inital")]
+    partial class inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,7 @@ namespace Bookshelf.API.DataAccess.Migrations
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Book", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
@@ -104,6 +105,12 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorID");
+
+                    b.HasIndex("GenreID");
+
+                    b.HasIndex("PublisherID");
+
                     b.ToTable("Books");
                 });
 
@@ -133,7 +140,7 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<DateTime?>("LendDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(618));
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(2798));
 
                     b.Property<DateTime?>("ReturnedDate")
                         .HasColumnType("datetime2");
@@ -170,16 +177,13 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookId1")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CreatedUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(2223));
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(4484));
 
                     b.Property<DateTime?>("FinishDate")
                         .HasColumnType("datetime2");
@@ -203,7 +207,7 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<DateTime?>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(2486));
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(4672));
 
                     b.Property<int?>("UpdatedUserId")
                         .HasColumnType("int");
@@ -215,7 +219,7 @@ namespace Bookshelf.API.DataAccess.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("BookId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("BookUsers");
                 });
@@ -296,16 +300,13 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<DateTime?>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(7565));
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(7725));
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -329,7 +330,7 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Property<DateTime?>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 11, 16, 31, 27, 121, DateTimeKind.Utc).AddTicks(7722));
+                        .HasDefaultValue(new DateTime(2022, 5, 11, 23, 27, 39, 922, DateTimeKind.Utc).AddTicks(7875));
 
                     b.Property<int?>("UpdatedUserId")
                         .HasColumnType("int");
@@ -345,21 +346,21 @@ namespace Bookshelf.API.DataAccess.Migrations
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Book", b =>
                 {
                     b.HasOne("Bookshelf.API.Entities.Concrete.Author", "Author")
-                        .WithMany("Books")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .WithMany()
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bookshelf.API.Entities.Concrete.Genre", "Genre")
-                        .WithMany("Books")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .WithMany()
+                        .HasForeignKey("GenreID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bookshelf.API.Entities.Concrete.Publisher", "Publisher")
-                        .WithMany("Books")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .WithMany()
+                        .HasForeignKey("PublisherID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");
@@ -385,15 +386,15 @@ namespace Bookshelf.API.DataAccess.Migrations
 
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.BookUser", b =>
                 {
-                    b.HasOne("Bookshelf.API.Entities.Concrete.User", "User")
+                    b.HasOne("Bookshelf.API.Entities.Concrete.Book", "Book")
                         .WithMany("BookUsers")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Bookshelf.API.Entities.Concrete.Book", "Book")
+                    b.HasOne("Bookshelf.API.Entities.Concrete.User", "User")
                         .WithMany("BookUsers")
-                        .HasForeignKey("BookId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -402,26 +403,11 @@ namespace Bookshelf.API.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Author", b =>
-                {
-                    b.Navigation("Books");
-                });
-
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Book", b =>
                 {
                     b.Navigation("BookTransactions");
 
                     b.Navigation("BookUsers");
-                });
-
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Genre", b =>
-                {
-                    b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Bookshelf.API.Entities.Concrete.Publisher", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Bookshelf.API.Entities.Concrete.User", b =>
