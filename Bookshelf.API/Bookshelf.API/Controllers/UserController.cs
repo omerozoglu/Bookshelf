@@ -21,6 +21,8 @@ namespace Bookshelf.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            Logger.NLogger nLogger = new Logger.NLogger();
+            nLogger.LogWithNLog("User Getall");
             return Ok(_mapper.Map<List<UserListDto>>(await _userService.GetAllAsync()));
         }
 

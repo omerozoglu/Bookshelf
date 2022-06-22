@@ -26,11 +26,8 @@ app.UseCustomExtension();
 app.UseStatusCodePages();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
 app.UseCors("LocalHost");
 app.UseAuthorization();

@@ -8,7 +8,8 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB; database=BookshelfApiDB; Integrated Security=true;");
+            //optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB; database=BookshelfApiDB; Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Data Source=.\MSSQLSERVER2019;Database=wednesd2_bookshelf;User=wednesd2_bookshelf_admin;PWD=omerozoglu@wednesdev.W6;Integrated Security=false");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,5 +30,6 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context
         public DbSet<Genre>? Genres { get; set; }
         public DbSet<Publisher>? Publishers { get; set; }
         public DbSet<User>? Users { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }
