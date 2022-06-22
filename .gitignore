@@ -1,7 +1,5 @@
-MEB Mock Data/
-images/Bookshelf
-# Created by https://www.toptal.com/developers/gitignore/api/angular,node,visualstudio,visualstudiocode,dotnetcore
-# Edit at https://www.toptal.com/developers/gitignore?templates=angular,node,visualstudio,visualstudiocode,dotnetcore
+# Created by https://www.toptal.com/developers/gitignore/api/node,angular,dotenv,visualstudio,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,angular,dotenv,visualstudio,visualstudiocode
 
 ### Angular ###
 ## Angular ##
@@ -35,19 +33,8 @@ e2e/*.map
 # System Files
 .DS_Store/
 
-### Sass ###
-*.css.map
-*.sass.map
-*.scss.map
-
-### DotnetCore ###
-# .NET Core build folders
-bin/
-obj/
-
-# Common node modules locations
-/node_modules
-/wwwroot/node_modules
+### dotenv ###
+.env
 
 ### Node ###
 # Logs
@@ -124,7 +111,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -208,6 +194,10 @@ dist
 .ionide
 
 # Support for Project snippet scope
+.vscode/*.code-snippets
+
+# Ignore code-workspaces
+*.code-workspace
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -584,7 +574,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
-*.code-workspace
 
 # Local History for Visual Studio Code
 
@@ -601,4 +590,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/angular,node,visualstudio,visualstudiocode,dotnetcore
+# End of https://www.toptal.com/developers/gitignore/api/node,angular,dotenv,visualstudio,visualstudiocode
