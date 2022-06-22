@@ -1,2 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Montserrat";
+}
+
+body {
+  width: 65%;
+  margin: auto;
+  margin-top: 3%;
+  font-size: 18px;
+  color: black;
+}
+
+h1 {
+  color: black;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+h2 {
+  color: black;
+  font-size: 20px;
+}
+
+a:visited,
+a:hover {
+  color: inherit;
+}
+
+button {
+  border: unset;
+  background: initial;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #1eb4e9;
+  color: white;
+  padding: 10px 15px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.g-box-container {
+  -webkit-box-shadow: 1px 6px 6px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 1px 6px 6px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 18px;
+}
 /*# sourceMappingURL=styles.css.map */

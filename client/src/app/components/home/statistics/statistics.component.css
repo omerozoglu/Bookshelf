@@ -1,1 +1,39 @@
-/* No CSS *//*# sourceMappingURL=statistics.component.css.map */
+.statistics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin: 180px auto;
+  font-size: 26px;
+}
+
+.statistics .g-box-container {
+  text-align: center;
+  width: 200px;
+  max-height: 120px;
+  padding: 12px 0;
+}
+
+.statistics .have {
+  background-color: #fff0d2;
+  color: #9b8930;
+}
+
+.statistics .read {
+  background-color: #ddcfe8;
+  color: #7660b4;
+}
+
+.statistics .lent {
+  background-color: #bbe8f8;
+  color: #2a98c2;
+}
+
+.statistics .borrow {
+  background-color: #c3ecca;
+  color: #2f7468;
+}
+/*# sourceMappingURL=statistics.component.css.map */

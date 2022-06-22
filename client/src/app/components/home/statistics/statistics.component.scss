@@ -1,0 +1,31 @@
+@import "../../../../variables";
+
+.statistics {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 180px auto;
+  font-size: 26px;
+  .g-box-container {
+    text-align: center;
+    width: 200px;
+    max-height: 120px;
+    padding: 12px 0;
+  }
+  .have {
+    background-color: $yellow_p;
+    color: $yellow_s;
+  }
+  .read {
+    background-color: $purple_p;
+    color: $purple_s;
+  }
+  .lent {
+    background-color: $blue_s;
+    color: $blue_t;
+  }
+  .borrow {
+    background-color: $green_p;
+    color: $green_s;
+  }
+}

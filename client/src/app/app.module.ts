@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TestComponent } from './components/test/test.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { HeaderComponent } from './components/header/header.component';
     LoginComponent,
     RegisterComponent,
     NavComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

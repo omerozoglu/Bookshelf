@@ -1,1 +1,16 @@
-<p>header works!</p>
+<div class="header">
+  <h1 class="logo">{{ title }}</h1>
+
+  <div *ngIf="isLogin; then thenBlock; else elseBlock">this is ignored</div>
+  <ng-template #thenBlock>
+    <div *ngIf="isLogin">
+      <button>Signup</button>
+      <button>Login</button>
+    </div></ng-template
+  >
+  <ng-template #elseBlock>
+    <div class="nav">
+      <Button>My Account</Button>
+    </div></ng-template
+  >
+</div>
