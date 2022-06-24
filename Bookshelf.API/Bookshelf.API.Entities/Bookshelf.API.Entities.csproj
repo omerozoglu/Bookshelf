@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bookshelf.API.Domain\Bookshelf.API.Domain.csproj" />
+    <PackageReference Include="MongoDB.Driver" Version="2.16.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\Bookshelf.API.Domain\Bookshelf.API.Domain.csproj" />
   </ItemGroup>
 
 </Project>
