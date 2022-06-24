@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Nlog.config" />
   </ItemGroup>
 
@@ -26,10 +33,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Bookshelf.API.Business\Bookshelf.API.Business.csproj" />
     <ProjectReference Include="..\Bookshelf.API.DTO\Bookshelf.API.DTO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

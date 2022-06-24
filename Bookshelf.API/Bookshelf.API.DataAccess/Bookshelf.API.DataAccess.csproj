@@ -17,10 +17,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MongoDB.Driver" Version="2.16.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Bookshelf.API.Entities\Bookshelf.API.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Concrete\MongoDB\Repositories\" />
   </ItemGroup>
 
 </Project>
