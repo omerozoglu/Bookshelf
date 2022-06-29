@@ -2,7 +2,9 @@
 using Bookshelf.API.Business.Interfaces;
 using Bookshelf.API.DTO.DTOs.UserDtos;
 using Bookshelf.API.Entities.Concrete;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 
 namespace Bookshelf.API.Controllers
 {
@@ -11,18 +13,21 @@ namespace Bookshelf.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly ILogService _logService;
         private readonly IMapper _mapper;
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper, ILogService logService)
         {
             _userService = userService;
             _mapper = mapper;
+            _logService = logService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             Logger.NLogger nLogger = new Logger.NLogger();
-            nLogger.LogWithNLog("User Getall");
+            nLogger.LogWithNLog(new Log() { Message="User GetAll request"},NLog.LogLevel.Info);
+            //_logService.Create(new Log() { Message = "User Getall", CreationDate = DateTime.Now });
             return Ok(_mapper.Map<List<UserListDto>>(await _userService.GetAllAsync()));
         }
 
@@ -64,5 +69,32 @@ namespace Bookshelf.API.Controllers
             await _userService.RemoveAsync(new User { Id = id });
             return NoContent();
         }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [Route("/Error")]
+        public IActionResult Error()
+        {
+            var error = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            Logger.NLogger nLogger = new Logger.NLogger();
+            nLogger.LogWithNLog(new Log() { Message = "Unexpected error occurred:" },NLog.LogLevel.Error);
+
+            var errorData = "";
+            foreach (DictionaryEntry item in error.Error.Data)
+            {
+                errorData += ""+item.Key.ToString()+" : "+item.Value.ToString()+"\n";
+            }
+
+            _logService.Create(new Log()
+            {
+                Message = error.Error.Message,
+                Path= error.Path,
+                Data = errorData,
+                Source = error.Error.Source,
+                CreationDate = DateTime.Now
+            }); ;
+
+            return Problem(detail: "There is a problem on server side. It will be handle as soon as.");
+        }
+
     }
 }

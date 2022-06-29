@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Bookshelf.API.Entities\Bookshelf.API.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Concrete\MongoDB\Repositories\" />
-  </ItemGroup>
-
 </Project>

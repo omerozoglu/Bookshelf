@@ -1,11 +1,11 @@
-﻿using Bookshelf.API.Entities.Concrete;
-using Bookshelf.API.Entities.Concrete.Interfaces;
+﻿using Bookshelf.API.DataAccess.Interfaces;
+using Bookshelf.API.Entities.Concrete;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace Bookshelf.API.DataAccess.Concrete.MongoDB.Context
 {
-    public class MongoDBContext : IMongoLogDBContext
+    public class MongoDBContext : IMongoDBContext
     {
         private IMongoDatabase _db { get; set; }
         private MongoClient _mongoClient { get; set; }
@@ -16,9 +16,9 @@ namespace Bookshelf.API.DataAccess.Concrete.MongoDB.Context
             _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
         }
 
-        public IMongoCollection<Log> GetCollection<Book>(string name)
+        public IMongoCollection<T> GetCollection<T>(string name)
         {
-            throw new NotImplementedException();
+            return _db.GetCollection<T>(name);
         }
     }
 }

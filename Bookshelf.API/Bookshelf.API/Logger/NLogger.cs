@@ -1,14 +1,23 @@
-﻿using NLog;
+﻿using Bookshelf.API.Entities.Concrete;
+using NLog;
 
 namespace Bookshelf.API.Logger
 {
     public class NLogger
     {
-        public void LogWithNLog(string message)
+        public void LogWithNLog(Log log,NLog.LogLevel logLevel)
         {
             var logger = LogManager.GetLogger("loggerFile");
-            logger.Log(NLog.LogLevel.Error,message);
+            var message = 
+                " Message: " + log.Message+" "+
+                " Data: " +log.Data+" "+
+                " Details: "+
+                " Source: "+ log.Source+" "+
+                " Path: "+ log.Path+" "+
+                " CreatedUserId: "+log.CreatedUserId.ToString();
+            logger.Log(logLevel,message);
         }
+
         //in action 
         /*
             Logger.NLogger nLogger  = new Logger.NLogger();

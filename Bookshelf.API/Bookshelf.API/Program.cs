@@ -1,8 +1,7 @@
 using Bookshelf.API.Business.Containers.MicrosoftIoC;
 using Bookshelf.API.DataAccess.Concrete.MongoDB.Context;
-using Bookshelf.API.Entities.Concrete.Interfaces;
+using Bookshelf.API.DataAccess.Interfaces;
 using Bookshelf.API.Middlewares;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +14,7 @@ builder.Services.Configure<Mongosettings>(options =>
     options.DatabaseName = builder.Configuration["Mongosettings:DatabaseName"];
 });
 
-builder.Services.AddSingleton<IMongoLogDBContext, MongoDBContext>();
+builder.Services.AddSingleton<IMongoDBContext, MongoDBContext>();
 
 builder.Services.AddCors(cors =>
 {
@@ -37,8 +36,9 @@ app.UseCustomExtension();
 app.UseStatusCodePages();
 
 // Configure the HTTP request pipeline.
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseExceptionHandler("/Error");
 
 app.UseCors("LocalHost");
 app.UseAuthorization();
