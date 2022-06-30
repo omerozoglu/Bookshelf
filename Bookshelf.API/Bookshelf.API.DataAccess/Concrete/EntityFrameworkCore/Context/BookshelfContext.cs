@@ -6,10 +6,15 @@ namespace Bookshelf.API.DataAccess.Concrete.EntityFrameworkCore.Context
 {
     public class BookshelfContext: DbContext
     {
+        public BookshelfContext()
+        {
+            Database.Migrate();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB; database=BookshelfApiDB; Integrated Security=true;");
-            optionsBuilder.UseSqlServer(@"Data Source=.\MSSQLSERVER2019;Database=wednesd2_bookshelf;User=wednesd2_bookshelf_admin;PWD=omerozoglu@wednesdev.W6;Integrated Security=false");
+            optionsBuilder.UseSqlServer(@"Data Source=89.252.181.210\MSSQLSERVER2019;Database=wednesd2_bookshelf;User=wednesd2_bookshelf_admin;PWD=omerozoglu@wednesdev.W6;Integrated Security=false");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

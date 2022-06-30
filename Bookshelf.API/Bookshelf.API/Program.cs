@@ -15,7 +15,6 @@ builder.Services.Configure<Mongosettings>(options =>
 });
 
 builder.Services.AddSingleton<IMongoDBContext, MongoDBContext>();
-
 builder.Services.AddCors(cors =>
 {
     cors.AddPolicy("LocalHost", policy =>
@@ -28,8 +27,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
+var app = builder.Build();
 //Custom middleware example.
 app.UseCustomExtension();
 // Status code page
