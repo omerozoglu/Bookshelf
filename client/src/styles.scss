@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  width: 65%;
+  width: 100%;
   margin: auto;
   margin-top: 3%;
   font-size: 18px;
@@ -20,7 +20,7 @@ body {
 h1 {
   color: $black_p;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 h2 {
@@ -28,6 +28,9 @@ h2 {
   font-size: 20px;
 }
 
+p {
+  font-size: 18px;
+}
 a:visited,
 a:hover {
   color: inherit;
@@ -52,4 +55,12 @@ input:focus {
 .g-box-container {
   box-shadow: 1px 6px 6px 0px $shadow_p;
   border-radius: 18px;
+}
+.logo {
+  color: $blue_p;
+}
+
+.width-65 {
+  width: 65%;
+  margin: auto;
 }

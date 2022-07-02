@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  width: 65%;
+  width: 100%;
   margin: auto;
   margin-top: 3%;
   font-size: 18px;
@@ -19,12 +19,16 @@ body {
 h1 {
   color: black;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 h2 {
   color: black;
   font-size: 20px;
+}
+
+p {
+  font-size: 18px;
 }
 
 a:visited,
@@ -52,5 +56,14 @@ input:focus {
   -webkit-box-shadow: 1px 6px 6px 0px rgba(0, 0, 0, 0.16);
           box-shadow: 1px 6px 6px 0px rgba(0, 0, 0, 0.16);
   border-radius: 18px;
+}
+
+.logo {
+  color: #1eb4e9;
+}
+
+.width-65 {
+  width: 65%;
+  margin: auto;
 }
 /*# sourceMappingURL=styles.css.map */
