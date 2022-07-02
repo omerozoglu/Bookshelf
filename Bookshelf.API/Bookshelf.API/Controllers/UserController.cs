@@ -26,7 +26,7 @@ namespace Bookshelf.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             Logger.NLogger nLogger = new Logger.NLogger();
-            nLogger.LogWithNLog(new Log() { Message="User GetAll request"},NLog.LogLevel.Info);
+            nLogger.LogWithNLog(new Log() { Message = "User GetAll request" }, NLog.LogLevel.Info);
             //_logService.Create(new Log() { Message = "User Getall", CreationDate = DateTime.Now });
             return Ok(_mapper.Map<List<UserListDto>>(await _userService.GetAllAsync()));
         }
@@ -76,22 +76,22 @@ namespace Bookshelf.API.Controllers
         {
             var error = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             Logger.NLogger nLogger = new Logger.NLogger();
-            nLogger.LogWithNLog(new Log() { Message = "Unexpected error occurred:" },NLog.LogLevel.Error);
+            nLogger.LogWithNLog(new Log() { Message = "Unexpected error occurred:" }, NLog.LogLevel.Error);
 
             var errorData = "";
             foreach (DictionaryEntry item in error.Error.Data)
             {
-                errorData += ""+item.Key.ToString()+" : "+item.Value.ToString()+"\n";
+                errorData += "" + item.Key.ToString() + " : " + item.Value.ToString() + "\n";
             }
 
             _logService.Create(new Log()
             {
                 Message = error.Error.Message,
-                Path= error.Path,
+                Path = error.Path,
                 Data = errorData,
                 Source = error.Error.Source,
-                CreationDate = DateTime.Now
-            }); ;
+                CreationDate = DateTime.UtcNow
+            });
 
             return Problem(detail: "There is a problem on server side. It will be handle as soon as.");
         }
