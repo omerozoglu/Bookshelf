@@ -35,4 +35,14 @@
       -ms-flex-align: end;
           align-items: flex-end;
 }
+
+.footer .footer-body p {
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 /*# sourceMappingURL=footer.component.css.map */
